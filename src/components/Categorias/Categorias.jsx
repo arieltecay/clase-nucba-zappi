@@ -1,18 +1,15 @@
 import React from 'react';
-
+import { Categories } from '../../data/Categories'
 import Categoria from './Categoria';
+
 import { CategoriasContainer } from './CategoriasStyles';
 
 const Categorias = () => {
   return (
     <CategoriasContainer>
-      <Categoria />
-      <Categoria />
-      <Categoria />
-      <Categoria />
-      <Categoria />
-      <Categoria />
-      <Categoria />
+      {Categories.map(category => (
+        <Categoria key={category.id} {...category} />
+      ))}
     </CategoriasContainer>
   );
 };

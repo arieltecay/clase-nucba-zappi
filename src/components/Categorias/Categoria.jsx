@@ -2,7 +2,8 @@ import React from 'react';
 
 import { BorderDecoration, CardCategoria } from './CategoriasStyles';
 
-export const Categoria = () => {
+export const Categoria = ({ id, img, title, category }) => {
+  // console.log(id, img, title, category);
   return (
     <CardCategoria
       selected={false}
@@ -10,10 +11,10 @@ export const Categoria = () => {
       whileTap={{ scale: 0.95 }}
     >
       <img
-        src='https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648466/coding/NucbaZappi/Categorias/hamburguesa_faykp7.png'
-        alt='Hamburguesas'
+        src={img}
+        alt={title}
       />
-      <h2>Hamburguesas</h2>
+      <h2>{title}</h2>
       <BorderDecoration></BorderDecoration>
     </CardCategoria>
   );
