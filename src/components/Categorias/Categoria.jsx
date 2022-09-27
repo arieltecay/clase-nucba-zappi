@@ -3,7 +3,7 @@ import React from 'react';
 import { BorderDecoration, CardCategoria } from './CategoriasStyles';
 
 export const Categoria = ({ id, img, title, category }) => {
-  // console.log(id, img, title, category);
+  console.log(id, img, title, category);
   
   return (
     <CardCategoria
