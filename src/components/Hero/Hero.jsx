@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as categoriesActions from '../../redux/categories/categories-actions';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
-import * as categoriesAction from '../../redux/categories/categories-actions'
-
 
 import Button from '../UI/Button/Button';
 
@@ -14,29 +13,32 @@ import {
 } from './HeroStyles';
 
 const Hero = ({ doScroll }) => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
 
-  const listOfCategories = useSelector(state => state.categories.categories).map(category => category.category)
+  const listOfCategories = useSelector(
+    state => state.categories.categories
+  ).map(category => category.category);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e, value) => {
-    e.preventDefault()
-    const newCategory = value.trim().toLowerCase().split(' ').join('')
+  const handlerSubmit = (e, value) => {
+    e.preventDefault();
+
+    const newCategory = value.trim().toLowerCase().split(' ').join('');
 
     const selectedCategory = listOfCategories.find(
       category => category.toLowerCase() === newCategory
     );
 
     if (selectedCategory) {
-      dispatch(categoriesAction.selectedCategory(selectedCategory))
-      doScroll()
+      dispatch(categoriesActions.selectCategory(selectedCategory));
+      doScroll();
     } else {
-      return alert('Categoria no encontrada')
+      return alert('Categoría no encontrada');
     }
-    setValue('')
-  }
 
+    setValue('');
+  };
 
   return (
     <HeroContainerStyled>
@@ -52,7 +54,11 @@ const Hero = ({ doScroll }) => {
           <IconWrapperStyled>
             <AiOutlineSearch />
           </IconWrapperStyled>
-          <Button onClick={e => handleSubmit(e, value)} radius='10' disabled={!value}>
+          <Button
+            onClick={e => handlerSubmit(e, value)}
+            radius='10'
+            disabled={!value}
+          >
             Buscar
           </Button>
         </HeroFormStyled>

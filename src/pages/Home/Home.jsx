@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 
-
-
 import Categorias from '../../components/Categorias/Categorias';
 import CardsProductos from '../../components/Productos/CardsProductos';
 import CardsRecomendacion from '../../components/Recomendados/CardsRecomendacion';
@@ -15,9 +13,7 @@ import {
 } from './HomeStyles';
 
 function Home() {
-  const productsRef = useRef()
-
-  // console.log(productsRef.current.getBoundingClientRect().x);
+  const productsRef = useRef();
 
   const doScroll = () => {
     window.scrollTo(
@@ -25,6 +21,7 @@ function Home() {
       productsRef.current.getBoundingClientRect().y
     );
   };
+
   return (
     <HomeWrapper>
       {/* Hero Section */}

@@ -9,13 +9,10 @@ import {
   ProductosCard,
 } from './CardsProductosStyles';
 
-const CardProducto = ({ img, title, desc, price }) => {
+const CardProducto = ({ img, title, desc, price, id }) => {
   return (
     <ProductosCard>
-      <img
-        src={img}
-        alt={title}
-      />
+      <img src={img} alt={title} />
       <h2>{title}</h2>
       <p>{desc}</p>
       <ContainerPrice>

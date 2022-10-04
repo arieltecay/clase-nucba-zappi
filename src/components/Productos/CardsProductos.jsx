@@ -1,28 +1,28 @@
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { INITIAL_LIMIT } from '../../utils';
+
 import CardProducto from './CardProducto';
 import Button from '../UI/Button/Button';
 
 import { ProductosContainer } from './CardsProductosStyles';
 import { ButtonContainerStyled } from '../../pages/Home/HomeStyles';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { INITIAL_LIMIT } from '../../utils';
-
 
 const CardsProductos = () => {
-  let products = useSelector(state => state.products.products)
+  const [limit, setLimit] = useState(INITIAL_LIMIT);
 
+  let products = useSelector(state => state.products.products);
   const selectedCategory = useSelector(
     state => state.categories.selectedCategory
   );
-  const [limit, setLimit] = useState(INITIAL_LIMIT)
 
-  const totalProducts = useSelector(state => state.products.totalProducts)
+  const totalProducts = useSelector(state => state.products.totalProducts);
 
   if (selectedCategory) {
-    products = { [selectedCategory]: products[selectedCategory] }
+    products = { [selectedCategory]: products[selectedCategory] };
   }
 
-  useEffect(() => setLimit(INITIAL_LIMIT), [selectedCategory])
+  useEffect(() => setLimit(INITIAL_LIMIT), [selectedCategory]);
 
   return (
     <>
@@ -36,7 +36,6 @@ const CardsProductos = () => {
           })
         )}
       </ProductosContainer>
-
       {!selectedCategory && (
         <ButtonContainerStyled>
           <Button

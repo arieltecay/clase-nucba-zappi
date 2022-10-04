@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FaShoppingCart } from 'react-icons/fa';
 
-import { LinkContainerStyled } from '../NavbarStyles';
+import { LinkContainerStyled } from './../NavbarStyles';
 
 const CartIcon = ({ hiddenCart, setHiddenCart }) => {
   return (
