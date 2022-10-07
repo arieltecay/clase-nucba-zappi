@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as userActions from '../../redux/user/user-actions';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,16 +18,19 @@ import {
   UserNavStyled,
   UserContainerStyled,
   SpanStyled,
+  UserImageStyled,
 } from './NavbarStyles';
 
 function Navbar() {
-  const [hiddenCart, setHiddenCart] = useState(true);
+  const currentUser = useSelector(state => state.user.currentUser);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   return (
     <NavbarContainerStyled>
-      <ModalCart hiddenCart={hiddenCart} setHiddenCart={setHiddenCart} />
+      <ModalCart />
       <ModalUser />
       <div>
         <Link to='/'>
@@ -47,13 +51,25 @@ function Navbar() {
         </motion.div>
 
         <CartNavStyled>
-          <CartIcon hiddenCart={hiddenCart} setHiddenCart={setHiddenCart} />
+          <CartIcon />
         </CartNavStyled>
 
         <UserNavStyled>
-          <UserContainerStyled onClick={() => navigate('/register')}>
-            <SpanStyled>Inicia sesión</SpanStyled>
-            <FaUserAlt />
+          <UserContainerStyled
+            onClick={() =>
+              currentUser
+                ? dispatch(userActions.toggleMenuHidden())
+                : navigate('/register')
+            }
+          >
+            <SpanStyled>
+              {currentUser ? `${currentUser.displayName}` : 'Inicia sesión'}
+            </SpanStyled>
+            {currentUser?.photoURL ? (
+              <UserImageStyled src={currentUser.photoURL} alt='Perfil' />
+            ) : (
+              <FaUserAlt />
+            )}
           </UserContainerStyled>
         </UserNavStyled>
       </LinksContainerStyled>
