@@ -77,7 +77,7 @@ const ModalCart = () => {
               <TitleStyled>
                 <h1>Tus Productos</h1>
                 <Increase
-                  onClick={e => dispatch(cartActions.clearCart())}
+                  onClick={() => dispatch(cartActions.clearCart())}
                   bgColor='var(--magenta)'
                   disabled={!cartItems.length}
                 >
@@ -113,10 +113,13 @@ const ModalCart = () => {
                 </PriceStyled>
               </TotalStyled>
               <ButtonContainerStyled>
-                <Submit onClick={() => {
-                  navigate('/checkout');
-                  dispatch(cartActions.toggleHiddenCart());
-                }}>
+                <Submit
+                  onClick={() => {
+                    navigate('/checkout');
+                    dispatch(cartActions.toggleHiddenCart());
+                  }}
+                  disabled={!cartItems.length}
+                >
                   Iniciar pedido
                 </Submit>
               </ButtonContainerStyled>
